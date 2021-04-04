@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Главная страница</h2>
+    <p>Авторизация пользователя с использованием django-allauth и GitHub.</p>
+    <br>
+    <p>Пользователь: <span class="text-info"> {% if user.is_anonymous %} Не авторизован {% else %} {{ user }} {% endif %} </span></p>
+    <p>Дополнительные данные пользователя: <span class="text-info">{% if user.extra_data %} {{ user.extra_data }} {% else %} нет {% endif %}</span></p>
+    <div class="d-flex justify-content-between mt-5">
+        <div>
+            {% if user.is_anonymous %}
+                <a class="btn btn-outline-info text-secondary" href="{% url 'app:register' %}">Регистрация</a>
+                <a class="btn btn-outline-info text-secondary mx-3" href="{% url 'app:login' %}">Авторизация</a>
+            {% else %}
+                <a class="btn btn-outline-info text-secondary" href="{% url 'app:user_update' user.id %}">Изменить дополнительные данные пользователя</a>
+                <a class="btn btn-outline-info text-secondary mx-3" href="{% url 'app:logout' %}">Выход</a>
+            {% endif %}
+        </div>
+        <a class="btn btn-outline-info text-secondary" href="/admin">Admin</a>
+    </div>
+
+{% endblock %}

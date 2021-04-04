@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if title %}
+        <h2>{{ title }}</h2>
+    {% else %}
+        <h2>Регистрация</h2>
+    {% endif %}
+    <form method="post">  
+        {% csrf_token %}  
+        {{ form|crispy }}
+        <input class="btn btn-outline-info text-secondary mt-5" type="submit" value="Сохранить">
+        <a href="{% url 'app:index' %}" class="btn btn-outline-info text-secondary mt-5 mx-3">Отмена</a>
+    </form>  
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2>Авторизация</h2>
+    <form method="post">  
+        {% csrf_token %}  
+        {{ form|crispy }}  
+        <div class="d-flex justify-content-between mt-5">
+            <div>
+                <input class="btn btn-outline-info text-secondary" type="submit" value="Вход">
+                <a href="{% url 'app:index' %}" class="btn btn-outline-info text-secondary mx-3">Отмена</a>
+            </div>
+            <a href="/accounts/github/login" class="btn btn-success">Авторизация через GitHub</a>
+        </div>
+
+    </form>  
+{% endblock %}
